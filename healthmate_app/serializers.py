@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import UserProfile  # Import the UserProfile model
+from .models import UserProfile, HealthRecord  # Import the UserProfile model
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,3 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         UserProfile.objects.create(user=user, **profile_data)  # Create UserProfile
         return user
+    
+class HealthRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HealthRecord
+        fields = '__all__'

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../useAuth";
+import logo from "./../../assets/download.png";
+import doctor from "./../../assets/doctor.png";
 
 const Login = () => {
   const { login } = useAuth();
@@ -45,9 +47,15 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center gap-x-60 justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
+          <div className="flex text-xs gap-1 items-center justify-center font-bold">
+            <img src={logo} className="w-[50px]" alt="" />
+            <span className="text-3xl font-normal">
+              Health<span className="text-red-700">Mate</span>
+            </span>
+          </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Log in to HealthMate
           </h2>
@@ -98,6 +106,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <img className="h-[60vh]" src={doctor} alt="" />
     </div>
   );
 };

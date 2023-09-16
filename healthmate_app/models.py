@@ -28,6 +28,7 @@ class UserProfile(models.Model):
     weight = models.FloatField()
     blood_group = models.CharField(max_length=3, choices=BLOOD_GROUP_CHOICES)
     aadhar_no = models.CharField(max_length=12)
+    bmi = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -71,4 +72,5 @@ class HeartDiseasePrediction(models.Model):
 
     def __str__(self):
         return f"Heart Disease Prediction for {self.user.username} - {self.prediction_date}"
+    
         

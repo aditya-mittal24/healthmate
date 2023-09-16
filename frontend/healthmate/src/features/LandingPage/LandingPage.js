@@ -1,8 +1,19 @@
 import React from 'react'
+import Navbar from './components/Navbar'
+import Main from './components/Main'
+import Service from './components/Service'
+import Reviews from './components/Reviews'
+import Footer from './components/Footer'
 
-function LandingPage() {
+const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <div className=''>
+        <Navbar/>
+        <Main/>
+        <Service/>
+        <Reviews/>
+        <Footer/>
+    </div>
   )
 }
 

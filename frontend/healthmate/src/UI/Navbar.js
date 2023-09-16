@@ -1,12 +1,11 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { Fragment, useState } from "react";
 import Sidebar from "./Sidebar";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { BsPersonCircle } from "react-icons/bs";
 import logo from "../assets/download.png";
 import { useAuth } from "../features/useAuth";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 const Navbar = ({ children }) => {
   const { logout } = useAuth();
@@ -16,6 +15,16 @@ const Navbar = ({ children }) => {
   function handleClick() {
     setSidebar(!sidebar);
   }
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/logout/");
+      logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <Fragment>
       <div className="fixed w-full flex items-center bg-white z-30 drop-shadow">
@@ -40,10 +49,7 @@ const Navbar = ({ children }) => {
               <p className="text-sm font-medium">Account</p>
             </button>
             <button
-              onClick={() => {
-                logout();
-                navigate("/login")
-              }}
+              onClick={handleLogout}
               className="text-center px-5 py-1 rounded-md cursor-pointer hover:bg-gray-100 flex flex-col justify-center items-center"
             >
               <FaSignOutAlt />
